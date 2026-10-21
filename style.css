@@ -1,0 +1,144 @@
+:root {
+  --bg: #19233C;
+  --surface: #131057;
+  --purple-dark: #281595;
+  --primary: #6418FF;
+  --violet: #B216FE;
+  --magenta: #D60CA8;
+  --cyan: #3CDDE1;
+  --text: #F5F5FF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#hero {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(
+        to right,
+        var(--purple-dark) 66.67%,
+        var(--primary) 66.67%
+    );
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    max-width: 450px;
+    width: 100%;
+    justify-self: center;
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.hero-img {
+    height: 400px;
+    width: 400px;
+}
+
+.container-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    transform: translateX(-50%);
+}
+
+.box-img {
+  position: relative; 
+  display: inline-block;
+}
+
+.box-img img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px; 
+  position: relative;
+  z-index: 2; 
+}
+
+.box-img::before {
+  content: "";
+  position: absolute;
+  
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  border: 2px solid var(--text); 
+  border-radius: 4px;
+  background: transparent; 
+  
+  transform: translate(20px, +20px); 
+  
+  z-index: 1; 
+}
+
+.home-link {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 100;
+
+    background-color: yellow;
+
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--cyan);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.section {
+    min-height: 50vh;
+}
+
+@media (max-width: 768px) {
+    #hero {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 2rem;
+
+        background: #4439c8;
+    }
+
+    .hero-img {
+        transform: none;
+        justify-self: center;
+    }
+}
