@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dev Portfolio - João Silva</title>
     <link rel="stylesheet" href="./style.css">
+    <link 
+        rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" 
+    />
 </head>
 <body>
     <header>
@@ -16,7 +22,7 @@
         <section id="hero">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Hi, I'm João Pedro.
+                    Hi, I'm <span class="text-accent">João Pedro</span>.
                 </h1>
 
                 <p class="hero-subtitle">
@@ -31,10 +37,13 @@
                     <a class="btn btn-primary" href="#projects">
                         See My Projects
                     </a>
+                    <a class="btn btn-secondary" href="#about">
+                        Who Am I
+                    </a>
                     <a class="btn btn-secondary" href="#contact">
                         Contact Me
                     </a>
-                </div>    
+                </div>
             </div>
 
             <div class="container-img">
@@ -47,14 +56,202 @@
                     >
                 </div>
             </div>
+
+            <nav class="hero-socials" aria-label="Social profiles">
+                <a href="https://github.com/joaodev-19" aria-label="github" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+                <a href="www.linkedin.com/in/joão-silva-59218b339" aria-label="linkedin" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+            </nav>
+
+
+            <div class="hero-particles" aria-hidden="true">
+                <svg
+                    viewBox="0 0 1200 600"
+                    preserveAspectRatio="xMidYMid slice"
+                    focusable="false"
+                >
+
+                    <g class="constellation constellation--slow">
+                        <path d="M 55 148 L 112 98 L 165 146 L 205 122" />
+
+                        <circle cx="55" cy="148" r="2.5" />
+                        <circle cx="112" cy="98" r="2.5" />
+                        <circle cx="165" cy="146" r="2.5" />
+                        <circle cx="205" cy="122" r="2.5" />
+                    </g>
+
+                    <g class="constellation constellation--reverse">
+                        <path d="M 385 65 L 438 104 L 510 76" />
+
+                        <circle cx="385" cy="65" r="2" />
+                        <circle cx="438" cy="104" r="2.5" />
+                        <circle cx="510" cy="76" r="2" />
+                    </g>
+
+                    <g class="constellation constellation--slow constellation--light">
+                        <path d="M 946 96 L 1004 145 L 1066 101 L 1132 132" />
+
+                        <circle cx="946" cy="96" r="2.5" />
+                        <circle cx="1004" cy="145" r="2.5" />
+                        <circle cx="1066" cy="101" r="2.5" />
+                        <circle cx="1132" cy="132" r="2.5" />
+                    </g>
+
+                    <g class="constellation constellation--float constellation--light">
+                        <path d="M 1035 287 L 1095 255 L 1155 301" />
+
+                        <circle cx="1035" cy="287" r="2" />
+                        <circle cx="1095" cy="255" r="3" />
+                        <circle cx="1155" cy="301" r="2" />
+                    </g>
+
+                    <g class="constellation constellation--float">
+                        <path d="M 50 510 L 110 472 L 167 529 L 224 486" />
+
+                        <circle cx="50" cy="510" r="2.5" />
+                        <circle cx="110" cy="472" r="2" />
+                        <circle cx="167" cy="529" r="3" />
+                        <circle cx="224" cy="486" r="2.5" />
+                    </g>
+
+                    <g class="constellation constellation--reverse">
+                        <path d="M 465 505 L 527 538 L 585 495" />
+
+                        <circle cx="465" cy="505" r="2" />
+                        <circle cx="527" cy="538" r="2.5" />
+                        <circle cx="585" cy="495" r="2" />
+                    </g>
+
+                    <g class="particles-scattered">
+                        <circle cx="330" cy="172" r="1.5" />
+                        <circle cx="580" cy="158" r="1.8" />
+                        <circle cx="650" cy="92" r="1.5" />
+                        <circle cx="340" cy="560" r="2" />
+                        <circle cx="715" cy="515" r="1.5" />
+                        <circle cx="920" cy="480" r="1.8" />
+                    </g>
+
+                    <g class="particles-accent">
+                        <circle cx="790" cy="72" r="2" />
+                        <circle cx="165" cy="390" r="1.5" />
+                    </g>
+
+                </svg>
+            </div>
+
         </section>
 
-
-
-
-        <section class="section" id="about">
+        <section class="section about-section" id="about">
             <h2 class="section-title">Who am I?</h2>
+
+            <p class="section-description">
+                A brief introduction about me.
+            </p>
+
+            <div class="about-container">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">Hello World! I'm João.</h3>
+    
+                        <p class="card-heading">Developer, Student & Builder</p>
+                        <p class="card-presentation">I'm João Pedro, a Computer Science student and software developer from Brazil.</p>
+                        <p class="card-interest">I enjoy building web applications, understanding how systems work behind the scenes, and turning ideas into practical solutions. I'm particularly interested in backend development, REST APIs, and writing maintainable software.</p>
+                        <p class="card-experience">Currently, I'm a Software Development Intern at SEFIN-RO, working with Ruby on Rails. Outside of work, I explore React, TypeScript, Python, and Django REST Framework through personal projects.</p>
+                        <p class="card-philosophy">I believe good software development goes beyond writing code. It's about understanding problems, questioning solutions, and constantly improving.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">My Toolkit</h3>
+          
+                        <div class="stack-container">
+                            <h4 class="stack-title">Frontend</h4>
+
+                            <ul class="badge-list">
+                                <li><span class="stack-badge">React</span></li>
+                                <li><span class="stack-badge">TypeScript</span></li>
+                                <li><span class="stack-badge">HTML</span></li>
+                                <li><span class="stack-badge">CSS</span></li>
+                                <li><span class="stack-badge">JavaScript</span></li>
+                                <li><span class="stack-badge">Bootstrap</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="stack-container">
+                            <h4 class="stack-title">Backend</h4>
+
+                            <ul class="badge-list">
+                                <li><span class="stack-badge">Python</span></li>
+                                <li><span class="stack-badge">Django</span></li>
+                                <li><span class="stack-badge">DRF</span></li>
+                                <li><span class="stack-badge">Ruby</span></li>
+                                <li><span class="stack-badge">Rails</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="stack-container">
+                            <h4 class="stack-title">Tools & Infrastructure
+
+                            </h4>
+                            <ul class="badge-list">
+                                <li><span class="stack-badge">Git</span></li>
+                                <li hidden><span class="stack-badge">CI/CD</span></li>
+                                <li><span class="stack-badge">Linux</span></li>
+                                <li><span class="stack-badge">Docker</span></li>
+                                <li hidden><span class="stack-badge">AWS</span></li>
+                                <li hidden><span class="stack-badge">Kubernetes</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <section class="section journey-section" id="journey">
+            <h2 class="section-title">My Journey</h2>
+
+            <p class="section-description">
+                The experiences shaping my path into software development.
+            </p>
+
+            <div class="journey-container">
+
+                <article class="card experience-card">
+                    <h3 class="card-title">SEFIN-RO</h3>
+
+                    <div class="experience-role">
+                        <h4>Software Development Intern</h4>
+                        <p>Working with Ruby on Rails and internal systems.</p>
+                    </div>
+
+                    <div class="experience-role">
+                        <h4>IT Support / GLPI Administration</h4>
+                        <p>
+                            Experience supporting IT operations,
+                            service management, and GLPI workflows.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card experience-card">
+                    <h3 class="card-title">Law Office</h3>
+
+                    <div class="experience-role">
+                        <h4>My First Professional Experience</h4>
+                        <p>
+                            My professional journey began in a law office,
+                            before transitioning into information technology.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
         <section class="section"  id="projects">
             <h2 class="section-title">My Projects</h2>
         </section>
