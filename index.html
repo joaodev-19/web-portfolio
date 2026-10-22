@@ -11,6 +11,10 @@
         crossorigin="anonymous" 
         referrerpolicy="no-referrer" 
     />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/devicon@2.17.0/devicon.min.css"
+    >
 </head>
 <body>
     <header>
@@ -145,112 +149,193 @@
 
         </section>
 
-        <section class="section about-section" id="about">
+<!-- Cole esta secao no lugar do seu #about atual. -->
+<section class="section about-section" id="about">
+    <!-- Ornamento: usa suas animacoes .constellation existentes -->
+    <div class="about-sky" aria-hidden="true">
+        <svg viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <g class="constellation constellation--slow">
+                <path d="M 1095 118 L 1180 63 L 1260 124 L 1375 77"/>
+                <circle cx="1095" cy="118" r="2.5"/><circle cx="1180" cy="63" r="2.5"/>
+                <circle cx="1260" cy="124" r="2.5"/><circle cx="1375" cy="77" r="2.5"/>
+            </g>
+            <g class="constellation constellation--light constellation--reverse">
+                <path d="M 1220 690 L 1285 743 L 1380 704"/>
+                <circle cx="1220" cy="690" r="2"/><circle cx="1285" cy="743" r="2.5"/>
+                <circle cx="1380" cy="704" r="2"/>
+            </g>
+            <g class="constellation constellation--float">
+                <path d="M 50 702 L 115 658 L 188 724"/>
+                <circle cx="50" cy="702" r="2"/><circle cx="115" cy="658" r="2.5"/>
+                <circle cx="188" cy="724" r="2"/>
+            </g>
+        </svg>
+    </div>
+
+    <div class="section-header">
+        <div class="section-heading">
             <h2 class="section-title">Who am I?</h2>
+            <p class="section-description">A brief introduction about me.</p>
+        </div>
+    </div>
 
-            <p class="section-description">
-                A brief introduction about me.
-            </p>
-
-            <div class="about-container">
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="card-title">Hello World! I'm João.</h3>
-    
-                        <p class="card-heading">Developer, Student & Builder</p>
-                        <p class="card-presentation">I'm João Pedro, a Computer Science student and software developer from Brazil.</p>
-                        <p class="card-interest">I enjoy building web applications, understanding how systems work behind the scenes, and turning ideas into practical solutions. I'm particularly interested in backend development, REST APIs, and writing maintainable software.</p>
-                        <p class="card-experience">Currently, I'm a Software Development Intern at SEFIN-RO, working with Ruby on Rails. Outside of work, I explore React, TypeScript, Python, and Django REST Framework through personal projects.</p>
-                        <p class="card-philosophy">I believe good software development goes beyond writing code. It's about understanding problems, questioning solutions, and constantly improving.</p>
+    <div class="about-container">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">Hello World! <span class="text-accent">I'm João.</span></h3>
+                    <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
+                </div>
+                <p class="card-heading">Developer, Student &amp; Builder</p>
+                <p class="card-presentation">I'm João Pedro, a Computer Science student and software developer from Brazil.</p>
+                <p class="card-interest">I enjoy building web applications, understanding how systems work behind the scenes, and turning ideas into practical solutions. I'm particularly interested in backend development, REST APIs, and writing maintainable software.</p>
+                <p class="card-experience">Currently, I'm a Software Development Intern at SEFIN-RO, working with Ruby on Rails. Outside of work, I explore React, TypeScript, Python, and Django REST Framework through personal projects.</p>
+                <p class="card-philosophy">I believe good software development goes beyond writing code. It's about understanding problems, questioning solutions, and constantly improving.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <h3 class="card-title">My <span class="text-accent">Toolkit</span></h3>
+                    <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></div>
+                </div>
+                <!-- Checkbox acessivel que pausa todas as faixas sem JavaScript. -->
+                <input class="motion-checkbox" id="pause-toolkit" type="checkbox" />
+                <label class="motion-toggle" for="pause-toolkit">
+                    <span class="motion-pause">Ⅱ Pause animation</span>
+                    <span class="motion-play">▶ Resume animation</span>
+                </label>
+                <div class="stack-container">
+                    <h4 class="stack-title">Frontend</h4>
+                    <div class="carousel" tabindex="0" aria-label="Frontend technologies">
+                        <ul class="badge-list group">
+                        <li><span class="stack-badge"><i class="devicon-react-original colored" aria-hidden="true"></i> React</span></li>
+                        <li><span class="stack-badge"><i class="devicon-typescript-plain colored" aria-hidden="true"></i> TypeScript</span></li>
+                        <li><span class="stack-badge"><i class="devicon-html5-plain colored" aria-hidden="true"></i> HTML</span></li>
+                        <li><span class="stack-badge"><i class="devicon-css3-plain colored" aria-hidden="true"></i> CSS</span></li>
+                        <li><span class="stack-badge"><i class="devicon-javascript-plain colored" aria-hidden="true"></i> JavaScript</span></li>
+                        <li><span class="stack-badge"><i class="devicon-bootstrap-plain colored" aria-hidden="true"></i> Bootstrap</span></li>
+                    </ul>
+                        <ul class="badge-list group" aria-hidden="true">
+                        <li><span class="stack-badge"><i class="devicon-react-original colored" aria-hidden="true"></i> React</span></li>
+                        <li><span class="stack-badge"><i class="devicon-typescript-plain colored" aria-hidden="true"></i> TypeScript</span></li>
+                        <li><span class="stack-badge"><i class="devicon-html5-plain colored" aria-hidden="true"></i> HTML</span></li>
+                        <li><span class="stack-badge"><i class="devicon-css3-plain colored" aria-hidden="true"></i> CSS</span></li>
+                        <li><span class="stack-badge"><i class="devicon-javascript-plain colored" aria-hidden="true"></i> JavaScript</span></li>
+                        <li><span class="stack-badge"><i class="devicon-bootstrap-plain colored" aria-hidden="true"></i> Bootstrap</span></li>
+                    </ul>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-content">
-                        <h3 class="card-title">My Toolkit</h3>
-          
-                        <div class="stack-container">
-                            <h4 class="stack-title">Frontend</h4>
-
-                            <ul class="badge-list">
-                                <li><span class="stack-badge">React</span></li>
-                                <li><span class="stack-badge">TypeScript</span></li>
-                                <li><span class="stack-badge">HTML</span></li>
-                                <li><span class="stack-badge">CSS</span></li>
-                                <li><span class="stack-badge">JavaScript</span></li>
-                                <li><span class="stack-badge">Bootstrap</span></li>
-                            </ul>
-                        </div>
-
-                        <div class="stack-container">
-                            <h4 class="stack-title">Backend</h4>
-
-                            <ul class="badge-list">
-                                <li><span class="stack-badge">Python</span></li>
-                                <li><span class="stack-badge">Django</span></li>
-                                <li><span class="stack-badge">DRF</span></li>
-                                <li><span class="stack-badge">Ruby</span></li>
-                                <li><span class="stack-badge">Rails</span></li>
-                            </ul>
-                        </div>
-
-                        <div class="stack-container">
-                            <h4 class="stack-title">Tools & Infrastructure
-
-                            </h4>
-                            <ul class="badge-list">
-                                <li><span class="stack-badge">Git</span></li>
-                                <li hidden><span class="stack-badge">CI/CD</span></li>
-                                <li><span class="stack-badge">Linux</span></li>
-                                <li><span class="stack-badge">Docker</span></li>
-                                <li hidden><span class="stack-badge">AWS</span></li>
-                                <li hidden><span class="stack-badge">Kubernetes</span></li>
-                            </ul>
-                        </div>
+                <div class="stack-container">
+                    <h4 class="stack-title">Backend</h4>
+                    <div class="carousel carousel--reverse" tabindex="0" aria-label="Backend technologies">
+                        <ul class="badge-list group">
+                        <li><span class="stack-badge"><i class="devicon-python-plain colored" aria-hidden="true"></i> Python</span></li>
+                        <li><span class="stack-badge"><i class="devicon-django-plain colored" aria-hidden="true"></i> Django</span></li>
+                        <li><span class="stack-badge"><i class="devicon-djangorest-plain colored" aria-hidden="true"></i> DRF</span></li>
+                        <li><span class="stack-badge"><i class="devicon-ruby-plain colored" aria-hidden="true"></i> Ruby</span></li>
+                        <li><span class="stack-badge"><i class="devicon-rails-plain colored" aria-hidden="true"></i> Rails</span></li>
+                        <li><span class="stack-badge"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i> PostgreSQL</span></li>
+                    </ul>
+                        <ul class="badge-list group" aria-hidden="true">
+                        <li><span class="stack-badge"><i class="devicon-python-plain colored" aria-hidden="true"></i> Python</span></li>
+                        <li><span class="stack-badge"><i class="devicon-django-plain colored" aria-hidden="true"></i> Django</span></li>
+                        <li><span class="stack-badge"><i class="devicon-djangorest-plain colored" aria-hidden="true"></i> DRF</span></li>
+                        <li><span class="stack-badge"><i class="devicon-ruby-plain colored" aria-hidden="true"></i> Ruby</span></li>
+                        <li><span class="stack-badge"><i class="devicon-rails-plain colored" aria-hidden="true"></i> Rails</span></li>
+                        <li><span class="stack-badge"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i> PostgreSQL</span></li>
+                    </ul>
+                    </div>
+                </div>
+                <div class="stack-container">
+                    <h4 class="stack-title">Tools & Infrastructure</h4>
+                    <div class="carousel" tabindex="0" aria-label="Tools & Infrastructure technologies">
+                        <ul class="badge-list group">
+                        <li><span class="stack-badge"><i class="devicon-git-plain colored" aria-hidden="true"></i> Git</span></li>
+                        <li><span class="stack-badge"><i class="devicon-linux-plain" aria-hidden="true"></i> Linux</span></li>
+                        <li><span class="stack-badge"><i class="devicon-docker-plain colored" aria-hidden="true"></i> Docker</span></li>
+                        <li><span class="stack-badge"><i class="devicon-git-plain colored" aria-hidden="true"></i> Git</span></li>
+                        <li><span class="stack-badge"><i class="devicon-linux-plain" aria-hidden="true"></i> Linux</span></li>
+                        <li><span class="stack-badge"><i class="devicon-docker-plain colored" aria-hidden="true"></i> Docker</span></li>
+                        <li hidden><span class="stack-badge"><i class="devicon-amazonwebservices-plain-wordmark colored" aria-hidden="true"></i> AWS</span></li>
+                        <li hidden><span class="stack-badge"><i class="devicon-kubernetes-plain-wordmark colored" aria-hidden="true"></i> Kubernetes</span></li>
+                        <li hidden><span class="stack-badge"><i class="devicon-gitlab-plain-wordmark colored" aria-hidden="true"></i> GitLab</span></li>
+                        <li hidden><span class="stack-badge">CI/CD</span></li>
+                    </ul>
+                        <ul class="badge-list group" aria-hidden="true">
+                        <li><span class="stack-badge"><i class="devicon-git-plain colored" aria-hidden="true"></i> Git</span></li>
+                        <li><span class="stack-badge"><i class="devicon-linux-plain" aria-hidden="true"></i> Linux</span></li>
+                        <li><span class="stack-badge"><i class="devicon-docker-plain colored" aria-hidden="true"></i> Docker</span></li>
+                        <li><span class="stack-badge"><i class="devicon-git-plain colored" aria-hidden="true"></i> Git</span></li>
+                        <li><span class="stack-badge"><i class="devicon-linux-plain" aria-hidden="true"></i> Linux</span></li>
+                        <li><span class="stack-badge"><i class="devicon-docker-plain colored" aria-hidden="true"></i> Docker</span></li>
+                        <li hidden><span class="stack-badge"><i class="devicon-amazonwebservices-plain-wordmark colored" aria-hidden="true"></i> AWS</span></li>
+                        <li hidden><span class="stack-badge"><i class="devicon-kubernetes-plain-wordmark colored" aria-hidden="true"></i> Kubernetes</span></li>
+                        <li hidden><span class="stack-badge"><i class="devicon-gitlab-plain-wordmark colored" aria-hidden="true"></i> GitLab</span></li>
+                        <li hidden><span class="stack-badge">CI/CD</span></li>
+                    </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <section class="section journey-section" id="journey">
+<!-- Logo apos #about, sem precisar de um wrapper novo. -->
+<section class="section journey-section" id="journey">
+    <div class="section-header">
+        <div class="section-heading">
             <h2 class="section-title">My Journey</h2>
+            <p class="section-description">From a law office to IT, and now software development.</p>
+        </div>
+    </div>
 
-            <p class="section-description">
-                The experiences shaping my path into software development.
-            </p>
+    <!-- Mais antiga -> mais recente; a ultima etapa fica em destaque. -->
+    <ol class="journey-timeline">
+        <li class="journey-item">
+            <article class="journey-entry">
+                <p class="journey-eyebrow">01 / The beginning</p>
+                <h3 class="journey-role">Law Office</h3>
+                <p class="journey-place">Early professional experience</p>
+                <p class="journey-description">
+                    My professional journey began in a law office, before I decided to pursue a career in technology.
+                </p>
+                <div class="journey-tags">
+                    <span class="journey-tag">Professional foundation</span>
+                </div>
+            </article>
+        </li>
+        <li class="journey-item">
+            <article class="journey-entry">
+                <p class="journey-eyebrow">02 / Transition into IT</p>
+                <h3 class="journey-role">IT Support &amp; GLPI Administration</h3>
+                <p class="journey-place">SEFIN-RO</p>
+                <p class="journey-description">
+                    Worked with IT service management and GLPI administration, helping organize workflows, services and support processes.
+                </p>
+                <div class="journey-tags">
+                    <span class="journey-tag">IT Operations</span>
+                    <span class="journey-tag">GLPI</span>
+                </div>
+            </article>
+        </li>
+        <li class="journey-item journey-item--current">
+            <article class="journey-entry">
+                <p class="journey-eyebrow">03 / Current role</p>
+                <h3 class="journey-role">Software Development Intern</h3>
+                <p class="journey-place">SEFIN-RO</p>
+                <p class="journey-description">
+                    Developing experience with Ruby on Rails and internal applications while continuing to build personal full-stack projects.
+                </p>
+                <div class="journey-tags">
+                    <span class="journey-tag">Ruby on Rails</span>
+                    <span class="journey-tag">Web Development</span>
+                </div>
+            </article>
+        </li>
+    </ol>
+</section>
 
-            <div class="journey-container">
-
-                <article class="card experience-card">
-                    <h3 class="card-title">SEFIN-RO</h3>
-
-                    <div class="experience-role">
-                        <h4>Software Development Intern</h4>
-                        <p>Working with Ruby on Rails and internal systems.</p>
-                    </div>
-
-                    <div class="experience-role">
-                        <h4>IT Support / GLPI Administration</h4>
-                        <p>
-                            Experience supporting IT operations,
-                            service management, and GLPI workflows.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="card experience-card">
-                    <h3 class="card-title">Law Office</h3>
-
-                    <div class="experience-role">
-                        <h4>My First Professional Experience</h4>
-                        <p>
-                            My professional journey began in a law office,
-                            before transitioning into information technology.
-                        </p>
-                    </div>
-                </article>
-
-            </div>
-        </section>
 
         <section class="section"  id="projects">
             <h2 class="section-title">My Projects</h2>

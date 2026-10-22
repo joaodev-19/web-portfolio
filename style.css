@@ -1,74 +1,141 @@
+/* ================================================================
+   PORTFOLIO — JOAO PEDRO
+   01. Design tokens & base
+   02. Shared elements
+   03. Hero
+   04. Constellations
+   05. Back-to-top logo
+   06. Sections & About
+   07. Toolkit: badges & infinite marquee
+   08. Responsive layout
+   09. Reduced-motion preferences
+
+   Structure-first cleanup of the stylesheet provided on 2026-10-22.
+   The original visual identity is retained as closely as possible.
+   ================================================================ */
+
+/* 01. DESIGN TOKENS & BASE ---------------------------------------- */
+
 :root {
-  --bg: #19233C;
-  --surface: #131057;
-  --purple-dark: #281595;
-  --primary: #6418FF;
-  --secondary: #7951D4;
-  --violet: #B216FE;
-  --magenta: #D60CA8;
-  --cyan: #3CDDE1;
-  --amber: #FFC83D;
-  --text: #F5F5FF;
-  --dark-text: #1B1340;
+    --bg: #19233C;
+    --surface: #131057;
+    --purple-dark: #281595;
+    --primary: #6418FF;
+    --secondary: #7951D4;
+    --violet: #B216FE;
+    --magenta: #D60CA8;
+    --cyan: #3CDDE1;
+    --amber: #FFC83D;
+    --text: #F5F5FF;
+    --dark-text: #1B1340;
 
-  
-  /* (Hover e Active) */
-  --primary-hover: #500CEB;      
-  --primary-light: #8E54FF;      
-  --cyan-hover: #2BC4C8;         
-  --magenta-hover: #B8048E;     
+    --primary-hover: #500CEB;
+    --primary-light: #8E54FF;
+    --cyan-hover: #2BC4C8;
+    --magenta-hover: #B8048E;
+    --accent-gold: #FFD86B;
 
-  --accent-gold: #FFD86B;     
+    --text-muted: #9BA4B5;
+    --disabled: #2A2F4E;
+    --text-disabled: #5A6178;
 
-  /* Tons de Texto de Suporte e Estados Desabilitados */
-  --text-muted: #9BA4B5;        
-  --disabled: #2A2F4E;           
-  --text-disabled: #5A6178;      
-
-  --success: #39FF14;           
-  --error: #FF3366;            
-  --warning: #FF9933;           
+    --success: #39FF14;
+    --error: #FF3366;
+    --warning: #FF9933;
 }
 
-
-html {
-  scroll-behavior: smooth;
-}
-
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0px;
-    padding: 0px;
-
-    color: var(--text);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* 02. SHARED ELEMENTS --------------------------------------------- */
+
+.text-accent {
+    color: var(--amber);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    color: var(--text);
+    box-shadow: 4px 4px var(--surface);
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px var(--surface);
+}
+
+.btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 var(--surface);
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--text);
+    outline-offset: 3px;
+}
+
+.btn-primary {
+    background-color: var(--amber);
+    color: var(--dark-text);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-gold);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: var(--text);
+}
+
+.btn-secondary:hover {
+    background-color: var(--text);
+    color: var(--dark-text);
+}
+
+/* 03. HERO -------------------------------------------------------- */
+
 #hero {
-    display: grid;
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100svh;
     background: linear-gradient(
         to right,
         var(--purple-dark) 66.67%,
         var(--secondary) 66.67%
     );
-}
-
-.hero-particles {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
 }
 
 .hero-content,
@@ -77,20 +144,127 @@ body {
     z-index: 1;
 }
 
-.hero-socials {
-    z-index: 2;
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 700px;
+    width: 100%;
+    justify-self: center;
 }
+
+.hero-content h1,
+.hero-content p {
+    margin: 0;
+}
+
+.hero-title {
+    font-size: 4rem;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+.hero-description {
+    font-size: 1.5rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.container-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    transform: translateX(-50%);
+}
+
+.box-img {
+    position: relative;
+    display: inline-block;
+    box-shadow: 10px 10px 1px var(--surface);
+}
+
+.hero-img {
+    width: 400px;
+    height: 400px;
+}
+
+.box-img img {
+    position: relative;
+    z-index: 2;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.box-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transform: translate(20px, 20px);
+    border: 2px solid var(--amber);
+    border-radius: 4px;
+    background: transparent;
+}
+
+.hero-socials {
+    position: absolute;
+    z-index: 2;
+    right: 2rem;
+    bottom: 2rem;
+    display: flex;
+    gap: 16px;
+}
+
+.hero-socials a {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    color: var(--amber);
+    background-color: var(--bg);
+    border: 2px solid var(--amber);
+    border-radius: 50%;
+    box-shadow: 3px 3px var(--surface);
+    text-decoration: none;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.hero-socials a:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px var(--surface);
+}
+
+.hero-socials a:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 var(--surface);
+}
+
+/* 04. CONSTELLATIONS ---------------------------------------------- */
 
 .hero-particles {
     position: absolute;
-    inset: 0;
     z-index: 0;
-
+    inset: 0;
     width: 100%;
     height: 100%;
-
-    pointer-events: none;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .hero-particles svg {
@@ -99,20 +273,9 @@ body {
     height: 100%;
 }
 
-.hero-content,
-.container-img {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-socials {
-    z-index: 2;
-}
-
 .constellation {
     --particle-line: #C9A3FF;
     --particle-dot: #E0BFFF;
-
     transform-box: fill-box;
     transform-origin: center;
 }
@@ -130,7 +293,6 @@ body {
     fill: var(--particle-dot);
     fill-opacity: 0.65;
 }
-
 
 .constellation--light {
     --particle-line: #FFC83D;
@@ -150,12 +312,10 @@ body {
     opacity: 0.4;
 }
 
-
 .particles-accent circle {
     fill: var(--amber);
     opacity: 0.65;
 }
-
 
 .constellation--slow {
     animation: drift-slow 14s ease-in-out infinite alternate;
@@ -169,248 +329,48 @@ body {
     animation: drift-float 17s ease-in-out infinite alternate;
 }
 
-
 @keyframes drift-slow {
-    from {
-        transform: translate(0, 0);
-    }
-
-    to {
-        transform: translate(12px, -10px);
-    }
+    from { transform: translate(0, 0); }
+    to   { transform: translate(12px, -10px); }
 }
 
-
 @keyframes drift-reverse {
-    from {
-        transform: translate(0, 0);
-    }
-
-    to {
-        transform: translate(-14px, 9px);
-    }
+    from { transform: translate(0, 0); }
+    to   { transform: translate(-14px, 9px); }
 }
 
 @keyframes drift-float {
-    from {
-        transform: translate(0, 0);
-    }
-
-    to {
-        transform: translate(5px, -16px);
-    }
+    from { transform: translate(0, 0); }
+    to   { transform: translate(5px, -16px); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .constellation {
-        animation: none;
-    }
-}
-
-.hero-socials {
-    position: absolute;
-    display: flex;
-    bottom: 2rem;
-    right: 2rem;
-    gap: 16px;
-
-}
-
-.hero-socials a {
-    font-size: 24px;
-    color: var(--amber);
-    background-color: var(--bg);
-    border: 2px solid var(--amber);
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: grid;
-    place-items: center;
-    text-decoration: none;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    box-shadow: 3px 3px var(--surface);
-}
-
-.hero-socials a:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px var(--surface);
-}
-
-.hero-socials a:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0 0 var(--surface);
-}
-
-.text-accent {
-    color: var(--amber);
-}
-
-.hero-title {
-    font-size: 4rem;
-}
-
-.hero-subtitle {
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.1rem; /* sei lá que porra eu fiz aqui */
-}
-
-.hero-description {
-    font-size: 1.5rem;
-}
-
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    max-width: 700px;
-    width: 100%;
-    justify-self: center;
-}
-
-.hero-content h1,
-.hero-content p {
-    margin: 0;
-}
-
-.hero-actions {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-}
-
-.hero-img {
-    height: 400px;
-    width: 400px;
-}
-
-.container-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    transform: translateX(-50%);
-}
-
-.box-img {
-  position: relative; 
-  display: inline-block;
-  box-shadow: 10px 10px 1px var(--surface);
-}
-
-.box-img img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px; 
-  position: relative;
-  z-index: 2; 
-}
-
-.box-img::before {
-  content: "";
-  position: absolute;
-  
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  
-  border: 2px solid var(--amber); 
-  border-radius: 4px;
-  background: transparent; 
-  
-  transform: translate(20px, +20px);   
-  z-index: 1; 
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.625rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  border: 2px solid transparent;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  color: var(--text);
-  box-shadow: 4px 4px var(--surface);
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease,
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.btn:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px var(--surface);
-}
-
-.btn:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0 0 var(--surface);
-}
-
-.btn:focus-visible {
-  outline: 3px solid var(--text);
-  outline-offset: 3px;
-}
-
-.btn-primary {
-  background-color: var(--amber);
-  color: var(--dark-text);
-}
-
-.btn-primary:hover {
-  background-color: var(--accent-gold);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border-color: var(--text);
-}
-
-.btn-secondary:hover {
-  background-color: var(--text);
-  color: var(--dark-text);
-}
+/* 05. FIXED BACK-TO-TOP LOGO -------------------------------------- */
 
 @property --progress {
-    syntax: "<angle>";
+    syntax: '<angle>';
     inherits: false;
     initial-value: 0deg;
 }
 
 .home-link {
     --size: clamp(2.75rem, 2.4rem + 1.2vw, 3.5rem);
-
     position: fixed;
     top: calc(1.5rem + env(safe-area-inset-top, 0px));
     left: calc(1.5rem + env(safe-area-inset-left, 0px));
     z-index: 100;
+    isolation: isolate;
 
     display: grid;
     place-items: center;
-
     width: var(--size);
     aspect-ratio: 1;
-    border-radius: 50%;
     border: 2px solid var(--dark-text);
+    border-radius: 50%;
 
-    background-color: var(--amber);
     color: var(--dark-text);
-    text-decoration: none;
-
+    background-color: var(--amber);
     box-shadow: 2px 2px 0 var(--surface);
-
-    isolation: isolate;
+    text-decoration: none;
 
     background-image: linear-gradient(
         115deg,
@@ -429,7 +389,7 @@ body {
 }
 
 .home-link::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: -0.55rem;
     border-radius: 50%;
@@ -445,7 +405,6 @@ body {
         transparent calc(100% - 3px),
         black calc(100% - 2px)
     );
-
     mask: radial-gradient(
         farthest-side,
         transparent calc(100% - 3px),
@@ -469,42 +428,30 @@ body {
 .home-link span {
     position: relative;
     z-index: 1;
-
     font-size: calc(var(--size) * 0.34);
     font-weight: 800;
     letter-spacing: -0.04em;
-
-    transition: transform 0.3s
-        cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-
 .home-link::after {
-    content: "Back to top";
-
+    content: 'Back to top';
     position: absolute;
     top: 50%;
     left: calc(100% + 1.35rem);
-
     transform: translate(-8px, -50%);
-
     padding: 0.4rem 0.85rem;
-    border-radius: 999px;
     border: 2px solid var(--dark-text);
-
+    border-radius: 999px;
     background: var(--amber);
     color: var(--dark-text);
-
     font-size: 0.8rem;
     font-weight: 700;
     white-space: nowrap;
-
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
     box-shadow: 3px 3px 0 var(--surface);
-
     transition:
         opacity 0.2s ease,
         transform 0.2s ease,
@@ -539,9 +486,7 @@ body {
     outline-offset: 0.8rem;
 }
 
-@media (hover: hover) and
-       (prefers-reduced-motion: no-preference) {
-
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .home-link:hover {
         animation: light-sweep 0.7s ease-out;
     }
@@ -552,37 +497,216 @@ body {
     to   { background-position: 0% 0; }
 }
 
-
-@media (prefers-reduced-motion: reduce) {
-    .home-link,
-    .home-link span,
-    .home-link::after,
-    .home-link::before {
-        animation: none;
-        transition: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .home-link {
-        top: calc(1rem + env(safe-area-inset-top, 0px));
-        right: calc(1rem + env(safe-area-inset-left, 0px));
-    }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .btn {
-    transition: none;
-  }
-}
+/* 06. SECTIONS & ABOUT -------------------------------------------- */
 
 .section {
-    min-height: 50vh;
+    padding-block: clamp(4rem, 7vw, 7rem);
+    padding-inline: clamp(1.5rem, 5vw, 4rem);
+    background-color: var(--surface);
 }
 
-.about-section {
-    background-color: var(--bg);
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.section-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.section-heading .section-title,
+.section-heading .section-description {
+    margin: 0;
+}
+
+.section-title {
+    color: var(--amber);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.section-description {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.section-header > i {
+    font-size: 2.5rem;
+    color: var(--amber);
+    flex-shrink: 0;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    min-width: 0; /* Permite recortar corretamente o marquee dentro do Grid. */
+    padding: 2rem;
+    background-color: #241B73;
+    border: 1px solid var(--secondary);
+    border-radius: 0.5rem;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-title {
+    font-size: 2rem;
+}
+
+.card-icon {
+    display: grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: rgb(12 10 58 / 0.55);
+    border: 1px solid rgb(255 200 61 / 0.18);
+    box-shadow:
+        0 0 0 1px rgb(255 200 61 / 0.04),
+        0 10px 24px rgb(0 0 0 / 0.18);
+    color: var(--amber);
+    animation: icon-breathe 4.8s ease-in-out infinite;
+}
+
+.card-icon i {
+    font-size: 2rem;
+}
+
+.card:nth-child(2) .card-icon {
+    animation-duration: 5.6s;
+    animation-delay: 0.9s;
+}
+
+@keyframes icon-breathe {
+    0%, 100% { transform: translateY(0) scale(1); }
+    25%      { transform: translateY(-2px) scale(1.01); }
+    50%      { transform: translateY(-4px) scale(1.02); }
+    75%      { transform: translateY(-1px) scale(1.005); }
+}
+
+/* 07. TOOLKIT — STATIC BADGES & INFINITE MARQUEE ------------------- */
+
+.stack-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+/* Base para listas normais e para listas usadas nos carrosseis. */
+.badge-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.badge-list li[hidden] {
+    display: none;
+}
+
+.stack-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+    color: var(--text);
+    background-color: var(--purple-dark);
+    border: 1px solid var(--secondary);
+    border-radius: 0.375rem;
+}
+
+.stack-badge i {
+    font-size: 1.5rem;
+}
+
+/* Marquee: duas listas identicas, lado a lado, animadas juntas. */
+.carousel {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+    );
+}
+
+/* Mais especifica que .badge-list: nao deixa padding: 0 apagar a
+   separacao entre o ultimo e o primeiro badge de grupos vizinhos. */
+.carousel > .group {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 0.75rem;
+    padding: 0 0.75rem 0 0;
+    margin: 0;
+    list-style: none;
+    animation: marquee-scroll 24s linear infinite;
+}
+
+.carousel > .group > li {
+    flex: 0 0 auto;
+}
+
+.carousel .stack-badge {
+    justify-content: center;
+    gap: 0.75rem;
+    min-width: 8rem;
+    min-height: 3.5rem;
+    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
+}
+
+@keyframes marquee-scroll {
+    to { translate: -100%; }
+}
+
+.carousel--reverse > .group {
+    animation-direction: reverse;
+    animation-duration: 25s;
+}
+
+.carousel:hover > .group,
+.carousel:focus-within > .group {
+    animation-play-state: paused;
+}
+
+/* 08. RESPONSIVE LAYOUT ------------------------------------------- */
+
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -590,7 +714,6 @@ body {
         grid-template-columns: 1fr;
         gap: 3rem;
         padding: 2rem;
-
         background: #4439c8;
     }
 
@@ -603,7 +726,318 @@ body {
         transform: none;
         padding: 0;
     }
-    .home-link {
-        right: calc(1.5rem + env(safe-area-inset-left, 0px));
+
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
     }
+}
+
+@media (max-width: 480px) {
+    .home-link {
+        top: calc(1rem + env(safe-area-inset-top, 0px));
+        left: calc(1rem + env(safe-area-inset-left, 0px));
+    }
+}
+
+/* 09. REDUCED MOTION ---------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .constellation,
+    .card-icon,
+    .home-link,
+    .home-link::before,
+    .home-link span,
+    .home-link::after,
+    .btn,
+    .carousel > .group {
+        animation: none;
+        transition: none;
+    }
+
+    .carousel {
+        overflow-x: auto;
+        mask-image: none;
+    }
+
+    /* Sem movimento, a copia seria apenas redundante visualmente. */
+    .carousel > [aria-hidden='true'] {
+        display: none;
+    }
+}
+
+
+/* 10. ABOUT SKY & SECTION POLISH ----------------------------------- */
+
+/* About e Journey dividem a mesma superficie para uma rolagem continua. */
+.about-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+.about-sky {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.about-sky svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.about-sky .constellation path { stroke-opacity: 0.20; }
+.about-sky .constellation circle { fill-opacity: 0.55; }
+.about-sky .constellation--light { --particle-line: var(--amber); --particle-dot: var(--amber); }
+.about-sky .constellation--light path { stroke-opacity: 0.22; }
+
+.about-section > .section-header,
+.about-section > .about-container {
+    position: relative;
+    z-index: 1;
+}
+
+.about-container .card {
+    transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+@media (hover: hover) {
+    .about-container .card:hover {
+        border-color: rgb(201 163 255 / 0.65);
+        box-shadow: 0 14px 38px rgb(0 0 0 / 0.12);
+        transform: translateY(-2px);
+    }
+}
+
+.carousel .stack-badge {
+    transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.carousel .stack-badge:hover {
+    background-color: #37229F;
+    border-color: var(--accent-gold);
+}
+
+/* Controle CSS sem JS para pausar as tres faixas. */
+.motion-checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.motion-toggle {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    margin-top: -0.25rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid rgb(255 200 61 / 0.28);
+    border-radius: 0.35rem;
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.motion-toggle .motion-play,
+.motion-checkbox:checked + .motion-toggle .motion-pause {
+    display: none;
+}
+
+.motion-checkbox:checked + .motion-toggle .motion-play {
+    display: inline;
+}
+
+.motion-checkbox:focus-visible + .motion-toggle {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+}
+
+.motion-checkbox:checked ~ .stack-container .carousel > .group {
+    animation-play-state: paused;
+}
+
+/* 11. JOURNEY ------------------------------------------------------ */
+
+.journey-section {
+    padding-top: clamp(2rem, 4vw, 4rem);
+}
+
+.journey-timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 2.8rem 0 0;
+}
+
+/* Linha do tempo como uma 'constelacao' conectando tres pontos. */
+.journey-timeline::before {
+    content: '';
+    position: absolute;
+    top: 1.2rem;
+    left: 16.67%;
+    right: 16.67%;
+    height: 2px;
+    background: linear-gradient(to right,
+        rgb(201 163 255 / 0.25),
+        rgb(201 163 255 / 0.65),
+        rgb(255 200 61 / 0.8)
+    );
+}
+
+.journey-item {
+    position: relative;
+    min-width: 0;
+}
+
+.journey-item::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -2.05rem;
+    left: 50%;
+    width: 0.85rem;
+    height: 0.85rem;
+    transform: translateX(-50%);
+    border: 2px solid var(--secondary);
+    border-radius: 50%;
+    background: var(--surface);
+}
+
+.journey-item--current::before {
+    border-color: var(--amber);
+    background: var(--amber);
+    box-shadow: 0 0 0 5px rgb(255 200 61 / 0.12);
+}
+
+.journey-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    padding: clamp(1.25rem, 2.3vw, 2rem);
+    background: #241B73;
+    border: 1px solid var(--secondary);
+    border-radius: 0.5rem;
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.journey-item--current .journey-entry {
+    border-color: rgb(255 200 61 / 0.65);
+    background: linear-gradient(145deg, #29206F, #241B73);
+}
+
+.journey-eyebrow {
+    margin: 0;
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.journey-role {
+    margin: 0;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    line-height: 1.25;
+}
+
+.journey-place {
+    margin: -0.4rem 0 0;
+    color: #C9BCE9;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.journey-description {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.journey-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.journey-tag {
+    padding: 0.3rem 0.65rem;
+    border: 1px solid rgb(201 163 255 / 0.38);
+    border-radius: 99px;
+    background: rgb(40 21 149 / 0.5);
+    font-size: 0.73rem;
+}
+
+@media (hover: hover) {
+    .journey-entry:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-gold);
+        box-shadow: 0 10px 26px rgb(0 0 0 / 0.12);
+    }
+}
+
+@media (max-width: 900px) {
+    .journey-timeline {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 0 0 0 2.2rem;
+    }
+    .journey-timeline::before {
+        top: 1.2rem;
+        bottom: 1.2rem;
+        left: 0.75rem;
+        right: auto;
+        width: 2px;
+        height: auto;
+        background: linear-gradient(to bottom,
+            rgb(201 163 255 / 0.25),
+            rgb(201 163 255 / 0.65),
+            rgb(255 200 61 / 0.8)
+        );
+    }
+    .journey-item::before {
+        top: 2rem;
+        left: -1.88rem;
+        transform: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .section-description { font-size: 1.05rem; }
+    .section-header { margin-bottom: 1.5rem; }
+    .card { padding: 1.25rem; }
+    .card-title { font-size: clamp(1.35rem, 5.2vw, 2rem); }
+    .card-icon { width: 3.5rem; height: 3.5rem; }
+    .card-icon i { font-size: 1.5rem; }
+    .motion-toggle { margin-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-container .card,
+    .journey-entry,
+    .carousel .stack-badge {
+        transition: none;
+        transform: none;
+    }
+    .motion-toggle { display: none; }
 }
