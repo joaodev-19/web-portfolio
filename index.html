@@ -17,8 +17,10 @@
     >
 </head>
 <body>
-    <header>
-        <a href="#hero" class="home-link" aria-label="Back to introduction">
+    <header class="home-rail">
+        <a href="#hero"
+        class="home-link"
+        aria-label="Back to top">
             <span aria-hidden="true">JS</span>
         </a>
     </header>
@@ -66,7 +68,7 @@
                     <i class="fa-brands fa-github"></i>
                 </a>
 
-                <a href="www.linkedin.com/in/joão-silva-59218b339" aria-label="linkedin" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/joão-silva-59218b339" aria-label="linkedin" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin"></i>
                 </a>
             </nav>
@@ -164,7 +166,7 @@
                     </g>
 
                     <!-- ampulheta -->
-                    <g class="constellation constellation--slow constellation--light"">
+                    <g class="constellation constellation--slow constellation--light">
                         <path d="
                                 M 700 100 L 810 93 L 810 200 Z
                                 M 810 93 L 810 10 L 900 80 Z
@@ -190,7 +192,7 @@
 
 
                     <!-- Lateral esquerda -->
-                    <g class="constellation constellation--float constellation--light"">
+                    <g class="constellation constellation--float constellation--light">
                         <path d="M 35 330 L 105 275 L 170 320 L 128 380"/>
 
                         <circle cx="35" cy="330" r="2"/>
@@ -350,9 +352,12 @@
             </div>
         </section>
 
+        
+
         <section class="section career-section" id="journey" aria-labelledby="journey-title">
             <header class="section-header">
                 <div class="section-heading">
+                    
                     <h2 class="section-title" id="journey-title">My Journey</h2>
                     <p class="section-description">
                         From solving everyday problems to building software solutions.
@@ -360,9 +365,13 @@
                 </div>
             </header>
 
+            
+
             <ol class="career-timeline">
+                
                 <li class="career-step">
                     <article class="career-card">
+                        
                         <div class="career-card-header">
                             <div>
                                 <p class="career-kicker">01 / The beginning <span class="career-duration">· Around 3 years</span></p>
@@ -380,6 +389,8 @@
                             troubleshooting computers and printers. Understanding those workflows made me notice
                             how much repetitive work could be automated.
                         </p>
+
+                        <div class="logo-sentinel" aria-hidden="true"></div>
 
                         <div class="career-milestones" aria-label="How my interest in development evolved">
                             <div class="career-milestone">
@@ -406,6 +417,8 @@
                         </ul>
                     </article>
                 </li>
+
+                
 
                 <li class="career-step">
                     <article class="career-card">
@@ -462,12 +475,19 @@
                     </article>
                 </li>
             </ol>
+
+            
         </section>
 
 
 
         <section class="section"  id="projects">
-            <h2 class="section-title">My Projects</h2>
+            <div class="section-header section-header-reverse">
+                <div class="section-heading">
+                    <h2 class="section-title">My Projects</h2>
+                    <p class="section-description"></p>
+                </div>
+            </div>
         </section>
         <section class="section"  id="contact">
             <h2 class="section-title">Contact Me</h2>
@@ -478,23 +498,303 @@
     </footer>
 
     <script>
-        const threshold = 65;
+    (() => {
+        const link = document.querySelector(".home-link");
+        const rail = document.querySelector(".home-rail");
+        const sentinel = document.querySelector(".logo-sentinel");
 
-        function updateLogoPosition() {
-            const totalScrollable = 
-                document.documentElement.scrollHeight - window.innerHeight;
+        if (!link || !rail || !sentinel) return;
 
-            const progress = totalScrollable > 0 ? (window.scrollY / totalScrollable) * 100 : 0;
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        );
 
-            logo.classList.toggle("is-right", progress >= threshold);
+        // =====================================
+        // PHYSICS CONFIGURATION
+        // =====================================
+
+        const stiffness = 120;
+        const damping = 2 * Math.sqrt(stiffness);
+
+        let x = 0;
+        let velocity = 0;
+        let maxX = 0;
+
+        let goRight = false;
+        let rafId = 0;
+        let lastTime = 0;
+
+        let peakSpeed = 0;
+        let landed = true;
+        let landingAnimation = null;
+
+        // =====================================
+        // MEASURE THE TRACK
+        // =====================================
+
+        function measure() {
+            maxX = Math.max(
+                0,
+                rail.clientWidth - link.offsetWidth
+            );
         }
 
-        if (logo) {
-            window.addEventListener("scroll", updateLogoPosition, { passive: true });
-            window.addEventListener("resize", updateLogoPosition);
+        // =====================================
+        // RENDER POSITION AND DEFORMATION
+        // =====================================
 
-            updateLogoPosition();
+        function render() {
+            const progress = maxX > 0
+                ? Math.min(1, Math.max(0, x / maxX))
+                : 0;
+
+            const stretch = Math.min(
+                Math.abs(velocity) / 25000,
+                0.08
+            );
+
+            link.style.translate = `${x.toFixed(2)}px 0`;
+
+            link.style.scale = `
+                ${(1 + stretch).toFixed(4)}
+                ${(1 / (1 + stretch)).toFixed(4)}
+            `;
+
+            link.style.rotate = `${
+                (3 * Math.tanh(velocity / 2500)).toFixed(2)
+            }deg`;
+
+            // Desloca o brilho da superfície
+            link.style.setProperty(
+                "--shine-x",
+                `${((1 - progress) * 100).toFixed(2)}%`
+            );
+
+            // Controla de qual lado surge o tooltip
+            link.dataset.side = progress >= 0.5
+                ? "right"
+                : "left";
         }
+
+        // =====================================
+        // LANDING EFFECT
+        // =====================================
+
+        function land() {
+            if (landed) return;
+
+            landed = true;
+            delete link.dataset.moving;
+
+            if (reduceMotion.matches) return;
+
+            const impact = Math.min(
+                peakSpeed / 3000,
+                1
+            ) * 0.045;
+
+            if (impact < 0.005) return;
+
+            landingAnimation?.cancel();
+
+            landingAnimation = link.animate(
+                [
+                    { scale: "1 1" },
+
+                    {
+                        scale: `${1 - impact} ${1 + impact}`,
+                        offset: 0.3
+                    },
+
+                    {
+                        scale: `${
+                            1 + impact * 0.35
+                        } ${
+                            1 - impact * 0.35
+                        }`,
+                        offset: 0.65
+                    },
+
+                    { scale: "1 1" }
+                ],
+                {
+                    duration: 320,
+                    easing: "ease-out"
+                }
+            );
+        }
+
+        // =====================================
+        // SPRING SIMULATION
+        // =====================================
+
+        function frame(now) {
+            const dt = Math.min(
+                Math.max((now - lastTime) / 1000, 0.001),
+                0.04
+            );
+
+            lastTime = now;
+
+            const target = goRight ? maxX : 0;
+
+            const steps = Math.max(
+                1,
+                Math.ceil(dt * 120)
+            );
+
+            const h = dt / steps;
+
+            for (let i = 0; i < steps; i++) {
+                const acceleration =
+                    -stiffness * (x - target)
+                    - damping * velocity;
+
+                velocity += acceleration * h;
+                x += velocity * h;
+            }
+
+            // Impede que o logo ultrapasse as bordas
+            if (x < 0) {
+                x = 0;
+                velocity = 0;
+            }
+
+            if (x > maxX) {
+                x = maxX;
+                velocity = 0;
+            }
+
+            peakSpeed = Math.max(
+                peakSpeed,
+                Math.abs(velocity)
+            );
+
+            render();
+
+            const distance = Math.abs(x - target);
+
+            // Momento do impacto
+            if (
+                !landed &&
+                distance < 3 &&
+                Math.abs(velocity) < 80
+            ) {
+                land();
+            }
+
+            // Encerra a simulação quando estabilizar
+            if (
+                distance < 0.1 &&
+                Math.abs(velocity) < 1
+            ) {
+                x = target;
+                velocity = 0;
+                rafId = 0;
+
+                render();
+                delete link.dataset.moving;
+                return;
+            }
+
+            rafId = requestAnimationFrame(frame);
+        }
+
+        // =====================================
+        // CHANGE DESTINATION
+        // =====================================
+
+        function moveTo(right, instant = false) {
+            if (goRight === right && !instant) return;
+
+            goRight = right;
+            measure();
+
+            // Cancela impactos anteriores
+            landingAnimation?.cancel();
+            landingAnimation = null;
+
+            if (
+                instant ||
+                reduceMotion.matches ||
+                maxX === 0
+            ) {
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                }
+
+                rafId = 0;
+                x = right ? maxX : 0;
+                velocity = 0;
+                landed = true;
+
+                delete link.dataset.moving;
+                render();
+                return;
+            }
+
+            landed = false;
+            peakSpeed = 0;
+
+            link.dataset.moving = "";
+
+            // Se já estiver em movimento,
+            // preserva posição e velocidade.
+            if (!rafId) {
+                lastTime = performance.now();
+                rafId = requestAnimationFrame(frame);
+            }
+        }
+
+        // =====================================
+        // INITIALIZATION
+        // =====================================
+
+        measure();
+
+        // Define a posição sem animar no carregamento
+        moveTo(
+            sentinel.getBoundingClientRect().top <=
+                window.innerHeight / 2,
+            true
+        );
+
+        // Gatilho vinculado à posição da Journey
+        function updateTrigger() {
+            const passed =
+                sentinel.getBoundingClientRect().top <=
+                window.innerHeight / 2;
+
+            moveTo(passed);
+        }
+
+        window.addEventListener(
+            "scroll",
+            updateTrigger,
+            { passive: true }
+        );
+
+        window.addEventListener(
+            "resize",
+            updateTrigger
+        );
+
+        // Recalcula a distância após mudar a tela
+        new ResizeObserver(() => {
+            measure();
+
+            if (!rafId) {
+                x = goRight ? maxX : 0;
+                velocity = 0;
+                render();
+            }
+        }).observe(rail);
+
+        // Respeita alterações nas preferências do SO
+        reduceMotion.addEventListener("change", () => {
+            moveTo(goRight, true);
+        });
+    })();
     </script>
 </body>
 </html>

@@ -352,56 +352,110 @@ body {
     initial-value: 0deg;
 }
 
-.home-link {
+
+/* ==========================================
+   HOME LOGO — PHYSICS RAIL
+========================================== */
+
+.logo-sentinel {
+    height: 1px;
+    margin-bottom: -1px;
+    pointer-events: none;
+}
+
+.home-rail {
     --size: clamp(2.75rem, 2.4rem + 1.2vw, 3.5rem);
+    --edge: clamp(1rem, 2.5vw, 2.5rem);
+
     position: fixed;
-    top: calc(1.5rem + env(safe-area-inset-top, 0px));
-    left: calc(1.5rem + env(safe-area-inset-left, 0px));
     z-index: 100;
-    isolation: isolate;
+
+    top: calc(
+        clamp(1rem, 3vw, 1.5rem)
+        + env(safe-area-inset-top, 0px)
+    );
+
+    left: calc(
+        var(--edge)
+        + env(safe-area-inset-left, 0px)
+    );
+
+    right: calc(
+        var(--edge)
+        + env(safe-area-inset-right, 0px)
+    );
+
+    height: var(--size);
+
+    /* O trilho não bloqueia cliques na página */
+    pointer-events: none;
+}
+
+.home-link {
+    position: absolute;
+    top: 0;
+    left: 0;
 
     display: grid;
     place-items: center;
+
     width: var(--size);
     aspect-ratio: 1;
+
     border: 2px solid var(--dark-text);
     border-radius: 50%;
 
-    color: var(--dark-text);
     background-color: var(--amber);
-    box-shadow: 2px 2px 0 var(--surface);
-    text-decoration: none;
+    color: var(--dark-text);
 
+    text-decoration: none;
+    box-shadow: 2px 2px 0 var(--surface);
+
+    isolation: isolate;
+    pointer-events: auto;
+
+    /* Movimento calculado pelo JavaScript */
+    will-change: translate, scale, rotate;
+
+    /* Brilho acompanha a posição no trilho */
     background-image: linear-gradient(
         115deg,
         transparent 35%,
         rgb(255 255 255 / 0.55) 50%,
         transparent 65%
     );
+
     background-size: 250% 100%;
-    background-position: 100% 0;
+    background-position: var(--shine-x, 100%) 0;
     background-repeat: no-repeat;
 
+    /* Hover continua independente da mola */
     transition:
-        left 0.55s cubic-bezier(022, 1, 0.36, 1),
         transform 0.2s ease,
         box-shadow 0.2s ease,
         background-color 0.2s ease;
 }
 
-.home-link.is-right {
-    left: calc(100% - var(--size) - var(--edge));
-}
 
-.home-link.is-right::after {
+/* Tooltip à direita: aparece do lado esquerdo */
+
+.home-link[data-side="right"]::after {
     left: auto;
     right: calc(100% + 1.35rem);
     transform: translate(8px, -50%);
 }
 
-.home-link.is-right:is(:hover, :focus-visible)::after {
+.home-link[data-side="right"]:is(:hover, :focus-visible)::after {
     transform: translate(0, -50%);
 }
+
+/* Esconde o tooltip enquanto o logo viaja */
+
+.home-link[data-moving]:is(:hover, :focus-visible)::after {
+    opacity: 0;
+    visibility: hidden;
+}
+
 
 .home-link::before {
     content: '';
@@ -526,6 +580,10 @@ body {
     align-items: center;
     gap: 2rem;
     margin-bottom: 2rem;
+}
+
+.section-header-reverse {
+    justify-content: right;
 }
 
 .section-heading {
@@ -1167,9 +1225,34 @@ body {
     .motion-toggle { display: none; }
 }
 
-@media (max-width: 480px) {
-    .home-link {
-        --edge: 1rem;
-        right: auto;
-    }
+/* --- Navegadores baseados em Chromium (Chrome, Edge, Opera, Safari) --- */
+
+/* 1. Define a largura da barra vertical e altura da horizontal */
+::-webkit-scrollbar {
+  width: 10px;               /* Largura da barra vertical */
+  height: 10px;              /* Altura da barra horizontal (se houver) */
+}
+
+/* 2. O fundo da barra (a pista por onde ela corre) */
+::-webkit-scrollbar-track {
+  background: var(--surface);       /* Cor de fundo */
+  border-radius: 10px;       /* Bordas arredondadas */
+}
+
+/* 3. O indicador (o bloquinho que o usuário arrasta) */
+::-webkit-scrollbar-thumb {
+  background: var(--surface);        /* Cor do bloco */
+  border-radius: 10px;       /* Bordas arredondadas */
+}
+
+/* 4. O indicador quando o usuário passa o mouse por cima */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--surface);          /* Cor mais escura no hover */
+}
+
+
+/* --- Padrão Moderno (Suporte focado no Firefox) --- */
+html {
+  scrollbar-width: thin;          /* Deixa a barra mais fina ("thin" ou "auto") */
+  scrollbar-color: var(--amber) var(--surface);   /* Define as cores: [Bloco] [Fundo] */
 }
