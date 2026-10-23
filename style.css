@@ -383,9 +383,24 @@ body {
     background-repeat: no-repeat;
 
     transition:
+        left 0.55s cubic-bezier(022, 1, 0.36, 1),
         transform 0.2s ease,
         box-shadow 0.2s ease,
         background-color 0.2s ease;
+}
+
+.home-link.is-right {
+    left: calc(100% - var(--size) - var(--edge));
+}
+
+.home-link.is-right::after {
+    left: auto;
+    right: calc(100% + 1.35rem);
+    transform: translate(8px, -50%);
+}
+
+.home-link.is-right:is(:hover, :focus-visible)::after {
+    transform: translate(0, -50%);
 }
 
 .home-link::before {
@@ -1150,4 +1165,11 @@ body {
         transform: none;
     }
     .motion-toggle { display: none; }
+}
+
+@media (max-width: 480px) {
+    .home-link {
+        --edge: 1rem;
+        right: auto;
+    }
 }
