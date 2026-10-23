@@ -870,157 +870,268 @@ body {
     animation-play-state: paused;
 }
 
-/* 11. JOURNEY ------------------------------------------------------ */
+/* =============================================================
+   MY JOURNEY V2
+   Requer as variáveis e as classes .section, .section-header,
+   .section-heading, .section-title, .section-description e
+   .text-accent que já existem no seu portfolio.
+   Substitui o bloco antigo de CSS da Journey; não acumule ambos.
+   ============================================================= */
 
-.journey-section {
-    padding-top: clamp(2rem, 4vw, 4rem);
+.career-section {
+    position: relative;
+    isolation: isolate;
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-.journey-timeline {
+/* Os pontos e a linha dão continuidade às constelações do About. */
+.career-timeline {
+    --rail-x: 1.25rem;
+    --rail-offset: 4rem;
+
     position: relative;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.4rem;
-    list-style: none;
+    gap: 1.5rem;
+    max-width: 1120px;
     margin: 0;
-    padding: 2.8rem 0 0;
+    padding: 0 0 0 var(--rail-offset);
+    list-style: none;
 }
 
-/* Linha do tempo como uma 'constelacao' conectando tres pontos. */
-.journey-timeline::before {
-    content: '';
+.career-timeline::before {
+    content: "";
     position: absolute;
-    top: 1.2rem;
-    left: 16.67%;
-    right: 16.67%;
-    height: 2px;
-    background: linear-gradient(to right,
+    top: 2.5rem;
+    bottom: 2.5rem;
+    left: var(--rail-x);
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
         rgb(201 163 255 / 0.25),
-        rgb(201 163 255 / 0.65),
-        rgb(255 200 61 / 0.8)
+        rgb(121 81 212 / 0.75) 54%,
+        rgb(255 200 61 / 0.85)
     );
 }
 
-.journey-item {
+.career-step {
     position: relative;
     min-width: 0;
 }
 
-.journey-item::before {
-    content: '';
+.career-step::before {
+    content: "";
     position: absolute;
     z-index: 1;
-    top: -2.05rem;
-    left: 50%;
-    width: 0.85rem;
-    height: 0.85rem;
-    transform: translateX(-50%);
-    border: 2px solid var(--secondary);
+    top: 2.05rem;
+    left: calc(var(--rail-x) - var(--rail-offset) - 0.45rem);
+    width: 0.9rem;
+    aspect-ratio: 1;
     border-radius: 50%;
+    border: 2px solid #C9A3FF;
     background: var(--surface);
+    box-shadow: 0 0 0 5px rgb(121 81 212 / 0.12);
 }
 
-.journey-item--current::before {
+.career-step--current::before {
     border-color: var(--amber);
     background: var(--amber);
-    box-shadow: 0 0 0 5px rgb(255 200 61 / 0.12);
+    box-shadow: 0 0 0 6px rgb(255 200 61 / 0.13);
 }
 
-.journey-entry {
+.career-card {
     display: flex;
     flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+    padding: clamp(1.4rem, 2.6vw, 2.25rem);
+    border: 1px solid rgb(121 81 212 / 0.65);
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #241B73 0%, #1B1758 100%);
+    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.career-step--current .career-card {
+    border-color: rgb(255 200 61 / 0.7);
+    background: linear-gradient(135deg, #29216F 0%, #1D175C 100%);
+}
+
+.career-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: 1rem;
-    height: 100%;
-    padding: clamp(1.25rem, 2.3vw, 2rem);
-    background: #241B73;
-    border: 1px solid var(--secondary);
-    border-radius: 0.5rem;
-    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
-.journey-item--current .journey-entry {
-    border-color: rgb(255 200 61 / 0.65);
-    background: linear-gradient(145deg, #29206F, #241B73);
-}
-
-.journey-eyebrow {
-    margin: 0;
+.career-kicker {
+    margin: 0 0 0.65rem;
     color: var(--accent-gold);
     font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-weight: 750;
+    letter-spacing: 0.11em;
     text-transform: uppercase;
 }
 
-.journey-role {
-    margin: 0;
-    font-size: clamp(1.15rem, 2vw, 1.5rem);
-    line-height: 1.25;
+.career-duration {
+    color: #BBB0E3;
+    letter-spacing: 0.025em;
+    font-weight: 500;
+    text-transform: none;
 }
 
-.journey-place {
-    margin: -0.4rem 0 0;
+.career-current {
+    display: inline-block;
+    padding: 0.3rem 0.55rem;
+    margin-left: 0.5rem;
+    border: 1px solid rgb(255 200 61 / 0.55);
+    border-radius: 999px;
+    background: rgb(255 200 61 / 0.1);
+    color: var(--amber);
+    letter-spacing: 0.03em;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+.career-title {
+    margin: 0;
+    font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+    line-height: 1.24;
+    font-weight: 720;
+}
+
+.career-org {
+    margin: 0.65rem 0 0;
     color: #C9BCE9;
-    font-weight: 600;
     font-size: 0.9rem;
+    font-weight: 550;
 }
 
-.journey-description {
+.career-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 3.5rem;
+    aspect-ratio: 1;
+    border: 1px solid rgb(255 200 61 / 0.22);
+    border-radius: 50%;
+    background: rgb(12 10 58 / 0.6);
+    color: var(--amber);
+    font-size: 1.35rem;
+}
+
+.career-description {
+    max-width: 79ch;
     margin: 0;
-    color: var(--text);
-    font-size: 0.95rem;
-    line-height: 1.65;
+    color: #E4DEFA;
+    line-height: 1.7;
+    font-size: 0.98rem;
 }
 
-.journey-tags {
+/* Somente a experiência no escritório tem esta progressão interna. */
+.career-milestones {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.career-milestone {
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid rgb(201 163 255 / 0.2);
+    border-radius: 0.6rem;
+    background: rgb(19 16 87 / 0.66);
+}
+
+.career-milestone-number {
+    color: var(--amber);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.career-milestone h4 {
+    margin: 0.55rem 0 0.4rem;
+    font-size: 0.98rem;
+    line-height: 1.35;
+}
+
+.career-milestone p {
+    margin: 0;
+    color: #C9C2E8;
+    line-height: 1.6;
+    font-size: 0.85rem;
+}
+
+.career-tags {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 0.5rem;
-    margin-top: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.journey-tag {
-    padding: 0.3rem 0.65rem;
-    border: 1px solid rgb(201 163 255 / 0.38);
-    border-radius: 99px;
-    background: rgb(40 21 149 / 0.5);
-    font-size: 0.73rem;
+.career-tags li {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid rgb(201 163 255 / 0.3);
+    border-radius: 999px;
+    background: rgb(40 21 149 / 0.45);
+    color: #EEE8FF;
+    font-size: 0.75rem;
+    font-weight: 550;
 }
 
 @media (hover: hover) {
-    .journey-entry:hover {
+    .career-card:hover {
         transform: translateY(-3px);
-        border-color: var(--accent-gold);
-        box-shadow: 0 10px 26px rgb(0 0 0 / 0.12);
+        border-color: rgb(255 200 61 / 0.6);
+        box-shadow: 0 15px 35px rgb(0 0 0 / 0.13);
     }
 }
 
 @media (max-width: 900px) {
-    .journey-timeline {
+    .career-milestones {
         grid-template-columns: 1fr;
-        gap: 1.25rem;
-        padding: 0 0 0 2.2rem;
     }
-    .journey-timeline::before {
-        top: 1.2rem;
-        bottom: 1.2rem;
-        left: 0.75rem;
-        right: auto;
-        width: 2px;
-        height: auto;
-        background: linear-gradient(to bottom,
-            rgb(201 163 255 / 0.25),
-            rgb(201 163 255 / 0.65),
-            rgb(255 200 61 / 0.8)
-        );
+}
+
+@media (max-width: 600px) {
+    .career-timeline {
+        --rail-x: 0.55rem;
+        --rail-offset: 2rem;
+        gap: 1rem;
     }
-    .journey-item::before {
-        top: 2rem;
-        left: -1.88rem;
+
+    .career-card {
+        padding: 1.15rem;
+    }
+
+    .career-card-header {
+        gap: 0.6rem;
+    }
+
+    .career-icon {
+        width: 2.5rem;
+        font-size: 1.05rem;
+    }
+
+    .career-kicker {
+        font-size: 0.68rem;
+    }
+
+    .career-org {
+        line-height: 1.5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .career-card {
+        transition: none;
+    }
+    .career-card:hover {
         transform: none;
     }
 }
+
 
 @media (max-width: 600px) {
     .section-description { font-size: 1.05rem; }
@@ -1034,7 +1145,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
     .about-container .card,
-    .journey-entry,
     .carousel .stack-badge {
         transition: none;
         transform: none;

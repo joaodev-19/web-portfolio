@@ -281,60 +281,124 @@
     </div>
 </section>
 
-<!-- Logo apos #about, sem precisar de um wrapper novo. -->
-<section class="section journey-section" id="journey">
-    <div class="section-header">
+<!-- Insira esta seção imediatamente depois de #about. -->
+<section class="section career-section" id="journey" aria-labelledby="journey-title">
+    <header class="section-header">
         <div class="section-heading">
-            <h2 class="section-title">My Journey</h2>
-            <p class="section-description">From a law office to IT, and now software development.</p>
+            <h2 class="section-title" id="journey-title">My Journey</h2>
+            <p class="section-description">
+                From solving everyday problems to building software solutions.
+            </p>
         </div>
-    </div>
+    </header>
 
-    <!-- Mais antiga -> mais recente; a ultima etapa fica em destaque. -->
-    <ol class="journey-timeline">
-        <li class="journey-item">
-            <article class="journey-entry">
-                <p class="journey-eyebrow">01 / The beginning</p>
-                <h3 class="journey-role">Law Office</h3>
-                <p class="journey-place">Early professional experience</p>
-                <p class="journey-description">
-                    My professional journey began in a law office, before I decided to pursue a career in technology.
-                </p>
-                <div class="journey-tags">
-                    <span class="journey-tag">Professional foundation</span>
+    <ol class="career-timeline">
+        <!-- 01 / O começo: o trabalho administrativo virou motivação para programar. -->
+        <li class="career-step">
+            <article class="career-card">
+                <div class="career-card-header">
+                    <div>
+                        <p class="career-kicker">01 / The beginning <span class="career-duration">· Around 3 years</span></p>
+                        <h3 class="career-title">From paperwork to <span class="text-accent">programming</span></h3>
+                        <p class="career-org">Borges &amp; Sena <span aria-hidden="true">·</span> Law Office <span aria-hidden="true">·</span> Porto Velho, Brazil</p>
+                    </div>
+                    <div class="career-icon" aria-hidden="true">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
                 </div>
+
+                <p class="career-description">
+                    I started with administrative and legal-office routines: organizing digital client files,
+                    filing administrative proceedings, tracking expert examination dates, and occasionally
+                    troubleshooting computers and printers. Understanding those workflows made me notice
+                    how much repetitive work could be automated.
+                </p>
+
+                <div class="career-milestones" aria-label="How my interest in development evolved">
+                    <div class="career-milestone">
+                        <span class="career-milestone-number">01</span>
+                        <h4>Understood the problems</h4>
+                        <p>Learned the workflows and spotted repetitive document-management tasks.</p>
+                    </div>
+                    <div class="career-milestone">
+                        <span class="career-milestone-number">02</span>
+                        <h4>Built practical tools</h4>
+                        <p>Created batch file-renaming tools, experimented with PDF processing, and automated Word/PDF document generation.</p>
+                    </div>
+                    <div class="career-milestone">
+                        <span class="career-milestone-number">03</span>
+                        <h4>Started LexFlow</h4>
+                        <p>Turned the idea into an ongoing project to connect clients, cases, document generation, and access control.</p>
+                    </div>
+                </div>
+
+                <ul class="career-tags" aria-label="Relevant experience">
+                    <li>Workflow Automation</li>
+                    <li>Document Generation</li>
+                    <li>LexFlow · In progress</li>
+                </ul>
             </article>
         </li>
-        <li class="journey-item">
-            <article class="journey-entry">
-                <p class="journey-eyebrow">02 / Transition into IT</p>
-                <h3 class="journey-role">IT Support &amp; GLPI Administration</h3>
-                <p class="journey-place">SEFIN-RO</p>
-                <p class="journey-description">
-                    Worked with IT service management and GLPI administration, helping organize workflows, services and support processes.
-                </p>
-                <div class="journey-tags">
-                    <span class="journey-tag">IT Operations</span>
-                    <span class="journey-tag">GLPI</span>
+
+        <!-- 02 / Suporte e infraestrutura na SEFIN. -->
+        <li class="career-step">
+            <article class="career-card">
+                <div class="career-card-header">
+                    <div>
+                        <p class="career-kicker">02 / Moving into IT <span class="career-duration">· Around 6 months</span></p>
+                        <h3 class="career-title">IT Support &amp; Infrastructure Intern</h3>
+                        <p class="career-org">SEFIN-RO <span aria-hidden="true">·</span> GETIC</p>
+                    </div>
+                    <div class="career-icon" aria-hidden="true">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
                 </div>
+
+                <p class="career-description">
+                    I supported users, investigated technical issues, and worked with IT service management
+                    and GLPI administration. Helping people across the organization strengthened my
+                    communication, troubleshooting, and problem-solving skills.
+                </p>
+
+                <ul class="career-tags" aria-label="Relevant experience">
+                    <li>Technical Support</li>
+                    <li>GLPI</li>
+                    <li>IT Operations</li>
+                    <li>User Communication</li>
+                </ul>
             </article>
         </li>
-        <li class="journey-item journey-item--current">
-            <article class="journey-entry">
-                <p class="journey-eyebrow">03 / Current role</p>
-                <h3 class="journey-role">Software Development Intern</h3>
-                <p class="journey-place">SEFIN-RO</p>
-                <p class="journey-description">
-                    Developing experience with Ruby on Rails and internal applications while continuing to build personal full-stack projects.
-                </p>
-                <div class="journey-tags">
-                    <span class="journey-tag">Ruby on Rails</span>
-                    <span class="journey-tag">Web Development</span>
+
+        <!-- 03 / Etapa profissional atual. -->
+        <li class="career-step career-step--current">
+            <article class="career-card">
+                <div class="career-card-header">
+                    <div>
+                        <p class="career-kicker">03 / The next chapter <span class="career-current">Current role</span></p>
+                        <h3 class="career-title">Software Development <span class="text-accent">Intern</span></h3>
+                        <p class="career-org">SEFIN-RO <span aria-hidden="true">·</span> GETIC</p>
+                    </div>
+                    <div class="career-icon" aria-hidden="true">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
                 </div>
+
+                <p class="career-description">
+                    I've recently joined the software development team, where I'm gaining professional
+                    experience with Ruby on Rails and internal applications. I'm bringing what I learned
+                    from automation and user support into a new chapter focused on building software.
+                </p>
+
+                <ul class="career-tags" aria-label="Relevant experience">
+                    <li>Ruby on Rails</li>
+                    <li>Internal Applications</li>
+                    <li>Software Development</li>
+                </ul>
             </article>
         </li>
     </ol>
 </section>
+
 
 
         <section class="section"  id="projects">
